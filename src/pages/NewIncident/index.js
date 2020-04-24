@@ -29,7 +29,7 @@ export default function NewIncident() {
       description,
       value 
     }
-
+    
     try{
       const response = await api.post( '/incidents', data, { 
         headers:{ 

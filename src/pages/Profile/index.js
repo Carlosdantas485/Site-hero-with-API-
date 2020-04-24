@@ -9,19 +9,17 @@ import api from '../../services/api';
 
 export default function Profile(){
 
-    const [incidents, setIncidents] = useState([]);
-    
     //cont e minha declaraçao da constante 
     // [insidents armazena os dadeos do estado, vai atribuir os dados para o meu estado
-    // useStates(tipo de deados do meu esrado ) 
+    // useStates(tipo de deados do meu esrado )
 
+    const [incidents, setIncidents] = useState([]);
     const ongName = localStorage.getItem('ongName');
     const ongId = localStorage.getItem('ongId');
-
     const history = useHistory();
     
     useEffect(() => { 
-        api.get('profile', {
+        api.get('/profile', {
             headers:{ 
                 Authorization: ongId 
             }
@@ -51,12 +49,12 @@ export default function Profile(){
     }
 
     return(
-        <div class="profiles-container">
+        <div className="profiles-container">
             <header>
                 <img src={Logo} alt="herois"/>
                 <span>Bem-Vindo, {ongName}</span>
             
-                <Link class="button" to="/incidents/new">Cadastrar Novo Caso</Link>
+                <Link className="button" to="/incidents/new">Cadastrar Novo Caso</Link>
 
                 {/* () => previne que seja executado sozinho */}
                 <button type="button" onClick={exit}>
@@ -65,10 +63,8 @@ export default function Profile(){
             </header>
             <h1>Casos Cadastrados</h1>
             <ol>
-                {/* .map cria um for e grava em value para percorrer a lista */}
                 {incidents.map(value => (
                    <li>
-
                         <strong>Caso:</strong>
                         <p>{value.title}</p>
 
@@ -78,14 +74,11 @@ export default function Profile(){
                         <strong>VALOR:</strong>
                         <p>{value.value}</p>
 
-
                         <button type="button" onClick={ () => handleDelete( value.id )}>
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
                     </li> 
                 ))}
-                
-                
             </ol>
         </div>
     );

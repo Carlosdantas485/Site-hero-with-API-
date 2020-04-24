@@ -36,8 +36,8 @@ export default function Login(){
     }
 
     return (
-        <div class="login-container">
-            <section class="form">
+        <div className="login-container">
+            <section className="form">
                 <img src={Logo} alt="Seja um heroi"/>
                 
                 <form onSubmit={handleLogin}>
@@ -47,7 +47,7 @@ export default function Login(){
                         value={id}
                         onChange={ v => SetId ( v.target.value ) }
                     />
-                    <button class="button"type="submit">Entrar</button>
+                    <button className="button"type="submit">Entrar</button>
                     
                     <Link className="links" to="/register">
                         <FiLogIn size={15} color="#e02041"/>
