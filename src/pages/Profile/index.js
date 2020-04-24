@@ -2,7 +2,7 @@ import React, {useState, useEffect}from 'react';
 
 import './styles.css';
 import Logo from'../../assets/logo.svg';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {FiPower, FiTrash2} from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -17,6 +17,8 @@ export default function Profile(){
 
     const ongName = localStorage.getItem('ongName');
     const ongId = localStorage.getItem('ongId');
+
+    const history = useHistory();
     
     useEffect(() => { 
         api.get('profile', {
@@ -43,6 +45,11 @@ export default function Profile(){
         }
     }
 
+    function exit(){
+        localStorage.clear();
+        history.push('/');
+    }
+
     return(
         <div class="profiles-container">
             <header>
@@ -52,7 +59,7 @@ export default function Profile(){
                 <Link class="button" to="/incidents/new">Cadastrar Novo Caso</Link>
 
                 {/* () => previne que seja executado sozinho */}
-                <button type="button" >
+                <button type="button" onClick={exit}>
                     <FiPower size={18} color="#e02041"/>
                 </button>
             </header>
