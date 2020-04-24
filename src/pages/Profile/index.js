@@ -1,81 +1,84 @@
-import React from 'react';
+import React, {useState, useEffect}from 'react';
 
 import './styles.css';
 import Logo from'../../assets/logo.svg';
 import {Link} from 'react-router-dom';
 import {FiPower, FiTrash2} from 'react-icons/fi';
 
+import api from '../../services/api';
 
 export default function Profile(){
+
+    const [incidents, setIncidents] = useState([]);
+    
+    //cont e minha declaraçao da constante 
+    // [insidents armazena os dadeos do estado, vai atribuir os dados para o meu estado
+    // useStates(tipo de deados do meu esrado ) 
+
+    const ongName = localStorage.getItem('ongName');
+    const ongId = localStorage.getItem('ongId');
+    
+    useEffect(() => { 
+        api.get('profile', {
+            headers:{ 
+                Authorization: ongId 
+            }
+        })
+        .then(response => {
+            //data = conteudo da api
+            setIncidents(response.data);
+        })
+    }, [ongId]);
+
+    async function handleDelete(id){
+        try{
+            await api.delete(`incidents/${id}`,{
+                headers: { 
+                    Authorization: ongId
+                }
+            })
+        }
+        catch(err){
+            alert("error to delete ! try again ")
+        }
+    }
+
     return(
         <div class="profiles-container">
             <header>
                 <img src={Logo} alt="herois"/>
-                <span>Bem-Vindo, Guilu</span>
+                <span>Bem-Vindo, {ongName}</span>
             
                 <Link class="button" to="/incidents/new">Cadastrar Novo Caso</Link>
-                <button type="button">
+
+                {/* () => previne que seja executado sozinho */}
+                <button type="button" >
                     <FiPower size={18} color="#e02041"/>
                 </button>
             </header>
             <h1>Casos Cadastrados</h1>
             <ol>
-                <li>
-                    <strong>Caso:</strong>
-                    <p>Caso teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
+                {/* .map cria um for e grava em value para percorrer a lista */}
+                {incidents.map(value => (
+                   <li>
 
-                    <strong>Descrição</strong>
-                    <p>Descrição teste teste teste teste tes teste tes teste tes teste teste teste  test teste testete teste testete teste testete </p>
+                        <strong>Caso:</strong>
+                        <p>{value.title}</p>
 
-                    <strong>VALOR:</strong>
-                    <p>R$ 120,00</p>
+                        <strong>Descrição</strong>
+                        <p>{value.description}</p>
 
-                    <button type="button">
-                    <FiTrash2 size={20} color="#a8a8b3"/>
-                    </button>
-                </li>
-                <li>
-                    <strong>Caso:</strong>
-                    <p>Caso teste</p>
+                        <strong>VALOR:</strong>
+                        <p>{value.value}</p>
 
-                    <strong>Descrição</strong>
-                    <p>Descrição teste</p>
-                    
-                    <strong>VALOR:</strong>
-                    <p>R$ 120,00</p>
 
-                    <button type="button">
-                    <FiTrash2 size={20} color="#a8a8b3"/>
-                    </button>
-                </li>
-                <li>
-                    <strong>Caso:</strong>
-                    <p>Caso teste</p>
-
-                    <strong>Descrição</strong>
-                    <p>Descrição teste</p>
-                    
-                    <strong>VALOR:</strong>
-                    <p>R$ 120,00</p>
-
-                    <button type="button">
-                    <FiTrash2 size={20} color="#a8a8b3"/>
-                    </button>
-                </li>
-                <li>
-                    <strong>Caso:</strong>
-                    <p>Caso teste</p>
-
-                    <strong>Descrição</strong>
-                    <p>Descrição teste</p>
-                    
-                    <strong>VALOR:</strong>
-                    <p>R$ 120,00</p>
-
-                    <button type="button">
-                    <FiTrash2 size={20} color="#a8a8b3"/>
-                    </button>
-                </li>
+                        <button type="button" onClick={ () => handleDelete( value.id )}>
+                            <FiTrash2 size={20} color="#a8a8b3"/>
+                        </button>
+                    </li> 
+                ))}
+                
+                
             </ol>
         </div>
     );
