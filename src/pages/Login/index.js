@@ -9,10 +9,6 @@ import{FiLogIn} from 'react-icons/fi';
 import Logo from'../../assets/logo.svg';
 import Bunner from '../../assets/heroes.png';
 
-// .get recebe
-// .poste envia en troca de uma resposta
-// .put envia e recebe para atualizar 
-
 export default function Login(){
 
     const [id, SetId] = useState('');

@@ -46,11 +46,16 @@ export default function NewIncident() {
     }
   }
 
+  function home(){
+    history.push('/profile');
+  }
+
+
   return (
     <div className="new-incident-container">
       <div className="content">
         <section>
-          <img src={logo} alt="Herois"/>
+          <img src={logo} alt="Herois" onClick={home}/>
 
           <h1>Cadastrar novo caso</h1>
           <p>Descreva o caso detalhadamente para encontrar um heroi para resolver isso.</p>

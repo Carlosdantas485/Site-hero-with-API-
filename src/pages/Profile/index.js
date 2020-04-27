@@ -48,12 +48,16 @@ export default function Profile(){
         history.push('/');
     }
 
+    function home(){
+        history.push('/profile');
+    }
+
     return(
         <div className="profiles-container">
             <header>
-                <img src={Logo} alt="herois"/>
+                <img src={Logo} alt="herois" onClick={home}/>
                 <span>Bem-Vindo, {ongName}</span>
-
+                
                 <Link className="button" to="/ongs">Ongs Cadastradas</Link>
             
                 <Link className="button" to="/incidents/new">Cadastrar Novo Caso</Link>
