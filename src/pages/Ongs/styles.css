@@ -55,12 +55,13 @@
 .all-info-ong{
     display: flex;
     justify-content: space-around;
-    cursor: pointer;
+    
 }
 
 .all-info-ong img:hover{
     transform: scale(1.05);
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .photo-test{

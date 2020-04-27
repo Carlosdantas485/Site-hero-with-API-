@@ -68,7 +68,7 @@ export default function Ongs(){
                             <p>{value.email}</p>
 
                             <strong>Whatsapp</strong>
-                            <p>{value.Whatsapp}</p>
+                            <p>{value.whatsapp}</p>
 
                             <strong>Cidade:</strong>
                             <p>{value.city}</p>
