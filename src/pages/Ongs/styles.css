@@ -1,0 +1,99 @@
+.profiles-container{
+    width: 100%;
+    max-width: 1180px;
+    padding:0 30px;
+    margin: 32px auto;
+
+}
+
+.profiles-container header{
+    display: flex;
+    align-items: center;
+}
+
+.profiles-container header span{
+    font-size: 20px;
+    margin-left: 24px;
+}
+
+.profiles-container header img{
+    height: 64px;
+}
+
+.profiles-container header a{
+    width: 260px;
+    margin-left: auto;
+    margin-top: 0;
+}
+
+.profiles-container header button{
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: transparent;
+    margin-left: 16px;
+    transition: border-color 0.2s;
+}
+
+.profiles-container header button:hover{
+    border-color: #999;
+}
+
+.profiles-container h1{
+    margin-top: 90px;
+    margin-bottom: 24px;
+}
+
+.profiles-container ol{
+    display: grid;
+    grid-template-columns: repeat( 2, 1fr);
+    grid-gap: 24px;
+    list-style: none;
+}
+
+.all-info-ong{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.all-info-ong img:hover{
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.photo-test{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin-right: 50px;
+}
+
+.name-ong{
+    margin-top: 10px;
+    margin-left: 32px;
+}
+
+.profiles-container li{
+    background: #ffff;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.profiles-container ol li strong{
+    display: block;
+    color: #41414d;
+
+}
+
+.profiles-container ol li p+strong{
+    margin-top: 22px;
+}
+
+.profiles-container ol li p{
+    color: #737380;
+    line-height: 21px;
+    font-size: 16px;
+}

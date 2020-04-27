@@ -4,7 +4,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from'./pages/Login';
 import Register from'./pages/Register';
 import Profile from './pages/Profile';
-import NewIncidents from './pages/NewIncident'
+import NewIncidents from './pages/NewIncident';
+import Ongs from './pages/Ongs';
+import OngsProfile from './pages/OngsProfile';
 
 export default function Routes(){
     return(
@@ -15,6 +17,10 @@ export default function Routes(){
                 
                 <Route path="/profile" component={Profile}/>
                 <Route path="/incidents" component={NewIncidents}/>
+
+                <Route path="/ongs" component={Ongs}/>
+                <Route path="/ongsprofile" component={OngsProfile}/>
+
             </Switch>
         </BrowserRouter>
     );
