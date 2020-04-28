@@ -70,7 +70,7 @@ export default function Profile(){
             <h1>Casos Cadastrados</h1>
             <ol>
                 {incidents.map(value => (
-                   <li>
+                   <li key={value.id}>
                         <strong>Caso:</strong>
                         <p>{value.title}</p>
 

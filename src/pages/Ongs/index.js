@@ -4,19 +4,16 @@ import './styles.css';
 import Logo from'../../assets/logo.svg';
 import FotoTeste from'../../assets/foto_teste.jpg';
 import {Link, useHistory} from 'react-router-dom';
-import {FiPower, FiTrash2} from 'react-icons/fi';
+import {FiPower} from 'react-icons/fi';
 
 import api from '../../services/api';
 
 export default function Ongs(){
 
-    //cont e minha declaraçao da constante 
-    // [insidents armazena os dadeos do estado, vai atribuir os dados para o meu estado
-    // useStates(tipo de deados do meu esrado )
-
     const [ongs, setOngs] = useState([]);
     const ongName = localStorage.getItem('ongName');
     const ongId = localStorage.getItem('ongId');
+    
     const history = useHistory();
 
     useEffect(() => { 
@@ -26,7 +23,6 @@ export default function Ongs(){
             }
         })
         .then(response => {
-            //data = conteudo da api
             setOngs(response.data);
         })
     }, [ongId]);
@@ -36,15 +32,20 @@ export default function Ongs(){
         history.push('/');
     }
 
+    function ongSelectd(id){
+
+        localStorage.setItem('IdSelect', id);
+    
+        history.push('/ongsprofile');
+    }
+
     return(
         <div className="profiles-container">
             <header>
                 <img src={Logo} alt="herois"/>
                 <span>Bem-Vindo, {ongName}</span>
 
-                <Link className="button" to="/ongs">Ongs Cadastradas</Link>
-
-                <Link className="button" to="/incidents/new">Cadastrar Novo Caso</Link>
+                <Link className="button" to="/profile">Voltar</Link>
 
                 <button type="button" onClick={exit}>
                     <FiPower size={18} color="#e02041"/>
@@ -53,10 +54,14 @@ export default function Ongs(){
             <h1>Casos Cadastrados</h1>
             <ol>
                 {ongs.map(value => (
-                   <li className="all-info-ong" >
-                       
+                   <button 
+                    className="all-info-ong"
+                    onClick={() => ongSelectd(value.id)} 
+                    key={value.id}
+                    >
+
                        <div>
-                       <img className="photo-test" src={FotoTeste}/>
+                            <img className="photo-test" src={FotoTeste} alt="Foto da ong "/>
                             <div className="name-ong">
                                 <strong>Nome:</strong>
                                 <p>{value.name}</p>
@@ -75,9 +80,10 @@ export default function Ongs(){
 
                             <strong>Estado</strong>
                             <p>{value.uf}</p>
+
+                            
                         </div>
-                        
-                    </li> 
+                    </button> 
                 ))}
             </ol>
         </div>

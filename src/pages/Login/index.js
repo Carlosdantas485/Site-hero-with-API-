@@ -12,7 +12,6 @@ import Bunner from '../../assets/heroes.png';
 export default function Login(){
 
     const [id, SetId] = useState('');
-    
     const history = useHistory();
 
     async function handleLogin(e){
@@ -20,7 +19,7 @@ export default function Login(){
 
         try{
             const responses = await api.post ( '/sessions', { id });
-            
+             
             localStorage.setItem('ongId', id);
             localStorage.setItem('ongName', responses.data.name)
             
