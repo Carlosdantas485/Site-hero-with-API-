@@ -16,7 +16,8 @@ export default function OngsProfile(){
 
     useEffect(() => {
         api.get('/profile', {
-            headers: {Authorization: IdSelect}
+            headers: {
+                Authorization: IdSelect}
         })
         .then(response => {
             setOngProfile(response.data)

@@ -12,11 +12,6 @@ export default function NewIncident() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [value, setValue] = useState();
-  
-  // nome guarda
-  //setNome troca
-  //useState define
-
   const ongId = localStorage.getItem('ongId');
   
   const history = useHistory();
@@ -82,7 +77,6 @@ export default function NewIncident() {
           <input 
             placeholder="Valor em reais"
             value={value}
-            //onChange = quando mudar
             onChange={ resposta => setValue( resposta.target.value )}
           />
           <button className="button" type="submit">Cadastrar</button>
