@@ -9,6 +9,11 @@
   justify-content: center;
 }
 
+textarea{
+  width: 100%;
+  padding: 20px;
+}
+
 .content {
   width: 100%;
   padding: 96px;
